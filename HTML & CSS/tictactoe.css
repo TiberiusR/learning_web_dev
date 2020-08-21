@@ -1,0 +1,25 @@
+h1 {
+    width: 50%;
+    margin: 0 auto 20px auto;
+    padding: 0 auto 0 auto;
+    text-align: center;
+}
+
+table {
+    margin: 0 auto;
+}
+
+td {
+    width: 100px;
+    height: 100px;
+}
+
+.hor {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.ver {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}

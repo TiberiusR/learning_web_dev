@@ -1,0 +1,20 @@
+h1 {
+    color: #ff0000;
+    border: 5px dashed purple;
+}
+
+li {
+    color: rgb(255, 165, 0);
+}
+
+h4 {
+    color: rgb(212, 32, 212);
+    background: rgb(255, 100, 100);
+}
+
+body {
+   /*  background: url(https://img.freepik.com/free-photo/old-wooden-texture-background-vintage_55716-1138.jpg?size=626&ext=jpg);
+    background-repeat: no-repeat;
+    background-size: cover; */
+    background: pink;
+}

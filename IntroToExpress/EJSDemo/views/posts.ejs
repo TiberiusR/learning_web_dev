@@ -1,0 +1,13 @@
+<%- include("partials/header") %> 
+<h1>POSTS POSTS POSTS</h1>
+
+<% for(let i = 0; i < posts.length; i++) { %>
+    <li><%= posts[i].title %> - <%= posts[i].author %></li>
+<% } %>
+
+<br>
+
+<% posts.forEach(function(post) { %>
+    <li><%= post.title %> - <%= post.author %></li>
+<% }) %>
+<%- include("partials/footer") %> 

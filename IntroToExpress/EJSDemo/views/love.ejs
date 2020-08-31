@@ -1,3 +1,11 @@
+<%- include("partials/header") %> 
 <h1>You fell in love with: <%= thingVar.toUpperCase() %></h1>
 
+<% if(thingVar === "Rusty") { %>
+    <p>GOOD CHOICE!</p>
+<% } else { %>
+    <p>You shoulda said RUSTY!</p>
+<% } %> 
+
 <h2>Directly from views folder</h2>
+<%- include("partials/footer") %> 

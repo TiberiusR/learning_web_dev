@@ -19,22 +19,6 @@ const campgroundSchema = new mongoose.Schema({
 
 const Campground = mongoose.model("Campground", campgroundSchema);
 
-// Campground.create(
-//     {
-//         name: "Tea Time Camp",
-//         image: "https://images.unsplash.com/photo-1539183204366-63a0589187ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-//         description: "This is a great place for tea time!"
-//     },
-//     function(err, campground) {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             console.log("CAMPGROUND CREATED");
-//             console.log(campground);
-//         }
-//     }
-// );
-
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
@@ -48,7 +32,7 @@ app.get("/campgrounds", function(req, res) {
         if(err) {
             console.log(err);
         } else {
-            res.render("campgrounds", {campgrounds: allCampgrounds});
+            res.render("index", {campgrounds: allCampgrounds});
         }
     });
     // res.render("campgrounds", {campgrounds: campgrounds});
@@ -64,7 +48,8 @@ app.post("/campgrounds", function(req, res) {
     //get data from form and add to array
     let name = req.body.name;
     let image = req.body.image;
-    let newCampground = {name: name, image: image};
+    let description = req.body.description;
+    let newCampground = {name: name, image: image, description: description};
     Campground.create(newCampground, function(err, newlyCreated) {
         if (err) {
             console.log(err);
@@ -76,9 +61,14 @@ app.post("/campgrounds", function(req, res) {
 
 //SHOW
 app.get("/campgrounds/:id", function(req, res) {
-
-    res.send("SHOW PAGE INC")
-})
+    Campground.findById(req.params.id, function(err, foundCampground) {
+        if (err) {
+            console.log("Not found");
+        } else {
+            res.render("show", {campground: foundCampground});
+        }
+    });
+});
 
 var port = process.env.PORT || 3000;
 app.listen(port, function () {

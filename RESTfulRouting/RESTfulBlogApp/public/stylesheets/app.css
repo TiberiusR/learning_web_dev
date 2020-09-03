@@ -2,6 +2,14 @@ i.icon {
     font-size: 2em;
 }
 
+i.chevron {
+    padding: auto;
+}
+
 .container.main {
     margin-top: 7em;
+}
+
+#delete {
+    display: inline;
 }

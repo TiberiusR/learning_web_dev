@@ -1,26 +1,6 @@
-var port = process.env.PORT || 3000;
-app.listen(port, function () {
-  console.log("Server Has Started!");
-});
-
-
-
-
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/db_name', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('Connected to DB!'))
-.catch(error => console.log(error.message));
-
-
-
-
-
-var mongoose = require("mongoose");
-var Campground = require("./models/campground");
-var Comment   = require("./models/comment");
+const mongoose = require("mongoose");
+const Campground = require("./models/campground");
+const Comment   = require("./models/comment");
  
 var data = [
     {
@@ -78,7 +58,6 @@ function seedDB(){
             });
         });
     }); 
-    //add a few comments
 }
  
 module.exports = seedDB;

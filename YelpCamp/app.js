@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
+const Campground = require("./models/campground");
+const seedDB = require("./seeds");
+
+
 
 mongoose.connect('mongodb://localhost:27017/yelp_camp', {
   useNewUrlParser: true,
@@ -10,17 +14,10 @@ mongoose.connect('mongodb://localhost:27017/yelp_camp', {
 .then(() => console.log('Connected to DB!'))
 .catch(error => console.log(error.message));
 
-//SCHEMA SETUP
-const campgroundSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description: String
-});
-
-const Campground = mongoose.model("Campground", campgroundSchema);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+seedDB();
 
 app.get("/", function(req, res) {
     res.render("landing");
@@ -61,7 +58,7 @@ app.post("/campgrounds", function(req, res) {
 
 //SHOW
 app.get("/campgrounds/:id", function(req, res) {
-    Campground.findById(req.params.id, function(err, foundCampground) {
+    Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground) {
         if (err) {
             console.log("Not found");
         } else {

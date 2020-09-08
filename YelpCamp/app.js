@@ -8,6 +8,7 @@ const Campground = require("./models/campground");
 const seedDB = require("./seeds");
 const Comment = require("./models/comment");
 const User = require("./models/user");
+const methodOverride = require("method-override");
 
 const commentRoutes = require("./routes/comments");
 const campgroundRoutes = require("./routes/campgrounds");
@@ -25,6 +26,7 @@ mongoose.connect('mongodb://localhost:27017/yelp_camp', {
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 // seedDB(); //seed the database
 
 //PASSPORT CONFIG
